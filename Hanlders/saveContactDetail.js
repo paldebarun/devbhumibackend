@@ -1,21 +1,21 @@
-const Message = require('../model/message');
+const Contact = require('../model/contact');
 const nodemailer=require('nodemailer');
 require('dotenv').config();
 
 
-exports.saveMessage = async (req, res) => {
+exports.saveContactDetails = async (req, res) => {
     try {
         
-        const { email,firstName,lastName,message} = req.body; 
+        const { email,firstName,lastName} = req.body; 
 
-        const newmessage = new Message({
+        const newcontact = new Contact({
          lastName,
          firstName,
          email,
-         message
+        
          
      });
-        const savedmessage = await newmessage.save();
+        const savedcontact = await newcontact.save();
 
         let transporter = nodemailer.createTransport({
             host: process.env.MAIL_HOST,
